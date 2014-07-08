@@ -1,5 +1,4 @@
 class Photo < ActiveRecord::Base
-
   belongs_to :owner, :class_name => "User"
   has_many :photo_taggings
   has_many(
@@ -8,5 +7,5 @@ class Photo < ActiveRecord::Base
     :source => :user
   )
 
-  validates :owner_id, :title, :url, :presence => true
+  validates :owner, :title, :url, :presence => true
 end

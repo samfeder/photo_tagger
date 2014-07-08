@@ -2,8 +2,7 @@ class Api::PhotosController < ApplicationController
   before_filter :require_current_user!, :only => [:create]
 
   def create
-    @photo = Photo.new(photo_params)
-    @photo.owner_id = current_user.id
+    @photo = current_user.photos.new(photo_params)
     if @photo.save
       render :json => @photo
     else
@@ -21,6 +20,6 @@ class Api::PhotosController < ApplicationController
 
   private
   def photo_params
-    params.require(:photo).permit(:owner_id, :title, :url)
+    params.require(:photo).permit(:title, :url)
   end
 end
