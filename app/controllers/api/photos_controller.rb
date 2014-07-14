@@ -8,7 +8,7 @@ class Api::PhotosController < ApplicationController
     else
       render(
         :json => @photo.errors.full_messages,
-        :status => :unprocessible_entity
+        :status => :unprocessable_entity
       )
     end
   end
