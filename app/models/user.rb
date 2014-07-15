@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :password, :length => { :minimum => 6, :allow_nil => true }
   validates :session_token, :presence => true
   validates :username, :uniqueness => true
-  has_many :photos
+  has_many :photos, :foreign_key => :owner_id
 
   after_initialize :ensure_session_token
 
