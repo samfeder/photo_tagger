@@ -2,6 +2,7 @@ var PT = window.PT = window.PT || {};
 
 var PhotosListView = PT.PhotosListView = function(){
   this.$el = $("<div>");
+  PT.Photo.on("add", this.render.bind(this))
 };
 
 PhotosListView.prototype.render = function(){
@@ -15,6 +16,8 @@ PhotosListView.prototype.render = function(){
     $li.html('<a href="' + photo.get("url") + '">' + photo.get("title") + "</a>")
     $ul.append($li)
   })
+
+
 
   return this;
 };

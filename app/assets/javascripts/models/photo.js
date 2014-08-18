@@ -6,6 +6,22 @@ var Photo = PT.Photo = function(options){
 }
 
 Photo.all = [];
+Photo._events = {
+
+}
+
+Photo.on = function(eventName, callback){
+  if (!_.has(this._events, eventName)){
+    this._events[eventName] = []
+  }
+  this._events[eventName].push(callback)
+}
+
+Photo.trigger = function(eventName){
+  this._events[eventName].forEach(function(callback){
+    return callback();
+  })
+}
 
 Photo.fetchByUserId = function(userID, callback) {
   $.ajax({
@@ -46,6 +62,7 @@ Photo.prototype.create = function(callback) {
       _.extend(photo.attributes, data)
 
       Photo.all.push(photo);
+      Photo.trigger("add");
       return callback(photo);
     }
   });

@@ -27,10 +27,14 @@ var PT = window.PT = window.PT || {}
 
 PT.initialize = function() {
   this.Photo.fetchByUserId(currentUserId, function(photos){
-    console.log(photos);
-    var view = new PhotosListView();
-    view.render()
-    $('div#content').append(view.$el);
+    var listView = new PhotosListView();
+    listView.render()
+    $('div#content').append(listView.$el);
+
+    var formView = new PhotoFormView();
+    formView.render()
+    $('div#content').append(formView.$el);
+
   });
 
 
