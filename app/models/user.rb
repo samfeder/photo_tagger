@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   validates :session_token, :presence => true
   validates :username, :uniqueness => true
   has_many :photos, :foreign_key => :owner_id
+  has_many :photo_taggings
+  has_many :tagged_photos, through: :photo_taggings, source: :photo
 
   after_initialize :ensure_session_token
 
