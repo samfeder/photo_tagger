@@ -23,6 +23,18 @@ Photo.trigger = function(eventName){
   })
 }
 
+Photo.find = function(id){
+  var thisPhoto = null
+
+  Photo.all.forEach(function(photo) {
+    if (photo.get("id") === parseInt(id)) {
+      thisPhoto = photo;
+    }
+  })
+
+  return thisPhoto;
+}
+
 Photo.fetchByUserId = function(userID, callback) {
   $.ajax({
     url: "/api/users/" + userID + "/photos",

@@ -26,19 +26,39 @@
 var PT = window.PT = window.PT || {}
 
 PT.initialize = function() {
+
   this.Photo.fetchByUserId(currentUserId, function(photos){
-    var listView = new PhotosListView();
-    listView.render()
-    $('div#content').append(listView.$el);
-
-    var formView = new PhotoFormView();
-    formView.render()
-    $('div#content').append(formView.$el);
-
+    PT.showPhotosIndex();
+    //
+    // var listView = new PhotosListView();
+    // listView.render()
+    // $('div#content').append(listView.$el);
+    //
+    // var formView = new PhotoFormView();
+    // formView.render()
+    // $('div#content').append(formView.$el);
   });
+};
 
-
-
-
-  // $('div#content').append(view.render().$el.html())
+PT.renderViews = function(){
+  var viewNames = Array.prototype.slice.call(arguments);
+  viewNames.forEach(function(ViewClass){
+    var view = new ViewClass()
+    view.render();
+    $('div#content').append(view.$el);
+  })
 }
+
+PT.showPhotosIndex = function(){
+  $("#content").empty()
+  PT.renderViews(PhotosListView, PhotoFormView);
+}
+
+PT.showPhotoDetail = function(photo){
+  $("#content").empty()
+  var view = new PhotoDetailView(photo)
+  view.render();
+  $('div#content').append(view.$el);
+}
+
+

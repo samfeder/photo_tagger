@@ -15,11 +15,38 @@
  *= require_tree .
  */
 
+div, h1, body, img, ul, li, a, figure {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-family: arial;
+  font: inherit;
+}
+
+.photo-fig {
+  position: relative;
+  display: block;
+  text-align: center;
+  margin: auto;
+  max-width: 60%;
+}
+
+img.photo {
+  cursor: crosshair;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 div.photo-tag {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border: solid red 5px;
   float: left;
+  position: absolute;
+  margin-top: -50px;
+  margin-left: -50px;
+  user-select: none;
 }
 
 ul.tag-options {
