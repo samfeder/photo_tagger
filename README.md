@@ -1,3 +1,4 @@
 # Starter for PhotoTagger
 
-This is a rails app to get you started on PhotoTagger.
+This is a rails app to get you started on PhotoTagger. By Sam and Noah
+
