@@ -18,6 +18,19 @@ class Api::PhotosController < ApplicationController
     render :json => @photos
   end
 
+  def update
+    @photo = current_user.photos.find(params[:id])
+    if @photo.update(photo_params)
+      render :json => @photo
+    else
+      render(
+        :json => @photo.errors.full_messages,
+        :status => :unprocessable_entity
+      )
+    end
+
+  end
+
   private
   def photo_params
     params.require(:photo).permit(:title, :url)
